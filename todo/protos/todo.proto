@@ -1,0 +1,35 @@
+
+syntax = "proto3";
+
+service Todo {
+  rpc AddItem (AddItemRequest) returns (ItemAdded) {}
+  rpc RemoveItem (RemoveItemRequest) returns (ItemRemoved) {}
+  rpc ToggleItem (ToggleItemRequest) returns (ItemToggled) {}
+  rpc ListItems (ListItemsRequest) returns (stream Item) {}
+}
+
+message Item {
+  string id = 1;
+  string name = 2;
+  bool completed = 3;
+}
+
+message ListItemsRequest {}
+
+message AddItemRequest {
+  string name = 1;
+}
+
+message RemoveItemRequest {
+  string id = 1;
+}
+
+message ToggleItemRequest {
+  string id = 1;
+}
+
+message ItemAdded {
+  string id = 1;
+}
+message ItemRemoved {}
+message ItemToggled {}
